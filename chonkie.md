@@ -42,7 +42,7 @@ Chunks the markdown table based on the rows and retains the header for each of t
 ### Code Chunker:
 Chunks the code block, can specify the programming language and chunks based on the tokenizer
 ### Semantic Chunker:
-Semantically chunks text based on the meaning instead of just defined delimiters
+Semantically chunks text, based on the meaning instead of just defined delimiters
 
 1. Splits the text into sentences
 2. Computes the embeddings for the each sentence
