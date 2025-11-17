@@ -82,14 +82,14 @@ chunk-3 -> tokens 8, 9, 10, 11
 
 Will present the understanding based on the image with explanation below for each components in the image
 
-##### No Chunking!
+#### No Chunking!
 This explains how the embedding model works, where each token will have an embedding and these token embedding will be transformed based on the context or tokens that co-occurs in the sentence using attention mechanism. Later based on the transformed or encoded embeddings the final polled single embedding will be generated for the whole text.
-##### Late Interaction - ColBERT!
+#### Late Interaction - ColBERT!
 This embedding model (ColBERT) generates token level embeddings, when a text is passed to the ColBERT, output will be matrix where each column is the token embedding. This stays relavent because instead of pooled embedding (Single embedding for the text), this caries more semantic information since there is an embedding for each of the token, this is semantically rich. But has a downside of memory, where this requires more memory to store and more resource for computation. 
 How this can be used in RAG?
 This can be used for RAG, where each of the knowledge can be chunked and embedded using the ColBERT which is of matrix now, where each token will have its embedding that has be encoded based on the context. This can be stored in the Vector database like Qdrant (Which supports the multi-vector). When the user query comes that is also embedded using ColBERT, even that is matrix, which will have the token level embeddings. Now for the vector similarity, we take each token embedding of the query and find cosine similarity with the each token embedding of each of the knowledge and find the maximum out of it. The same is done for all token of the query with all toekn embeddings for the each of the token embeddings of the knowledge and based on this we can rank based on the highest score. This is expensive, so mostly used for re-ranking after performing normal vector search based on the pooled embeddings.
 
-##### Late Chunking!
+#### Late Chunking!
 Inspired by the Late Interaction, where we use long context embedding model and pass the whole document or a big piece to text. This embedding model will produce the token level embedding. Now based on the chunk_size the document will be broken, later each chunks token level embedding will be pooled (mean, cls, etc.). By this each chunk embedding is going be semantically rich with the context of the whole document.
 
 - [Research Paper](https://arxiv.org/abs/2409.04701)
