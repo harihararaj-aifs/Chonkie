@@ -106,3 +106,31 @@ Where AI agents are used for the chunking, this requires us to provide the LLM a
 
 ### References:
 - [Chonkie Documentation](https://docs.chonkie.ai/oss/quick-start)
+
+# Chonkie Performance Review:
+1. Lightweight, very minimal dependency (0-1),  Python stdlib (Numpy) + (optional) sentence-transformers (except Neural Chunker and Slumber Chunker)
+2. Fewer imports, fast loading time
+3. Uses Local variables instead of the attribute access
+4. Pre-allocated list - When the approximate number of segments are known, capacity is planned accordingly via growth patterns
+5. Linear scans (O(n)) - Boundary detection, windowing, and filters are typically single-pass over sentence indices.
+6. Precompiled regex
+7. In `SemanticChunker` embeddings are calculated as a batch - Batch Inference
+8. Cosine similarity is done in NumPy (vectorized) - Very fast because of BLAS/OpenBLAS (CPU) or CuBLAS (GPU) (This will be run in C/Fortran)
+9. No framework-style orchestration
+
+### SemanticChunker:
+- Embedding model is called ONCE for all sentences
+- Cosine similarity matrix is reused
+- Savitzky–Golay filter smooths boundaries in O(n)
+- Only valley detection is O(n)
+
+### RecursiveChunker:
+- Splitting happens linearly (O(n)) with no repeated scans
+- Rules are applied top-down, only one pass per level
+
+### SentenceChunker:
+- Just regex (extremely fast in CPython)
+
+### TableChef / MarkdownChef:
+- Tokenization done once
+- Reuses token ids rather than strings
