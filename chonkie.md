@@ -98,9 +98,8 @@ Inspired by the Late Interaction, where we use long context embedding model and 
 ### Slumber Chunker:
 Where AI agents are used for the chunking, this requires us to provide the LLM and API_KEY for the same, this has the predefined agents that will work based on the LLM that we provide and this is going to perform chunking based on that.
 
-There are other `Pipeline`, that can be used to orchestrate all of the above or below as a sequencial process
-
 ### Other features:
 - **Refinery** - This can be used after chunking to configure `overlap`, `Embedding`
 - **Handshake** - Can be used to connect Chonkie with the **Vector Database** like Qdrant
 - **Porter** - Convert the chunked data into files like JSON or HuggingFace Dataset
+- **Pipeline** - Pipeline can be used to orchestrate or tie the above features as a sequence of steps
