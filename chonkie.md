@@ -103,3 +103,6 @@ Where AI agents are used for the chunking, this requires us to provide the LLM a
 - **Handshake** - Can be used to connect Chonkie with the **Vector Database** like Qdrant
 - **Porter** - Convert the chunked data into files like JSON or HuggingFace Dataset
 - **Pipeline** - Pipeline can be used to orchestrate or tie the above features as a sequence of steps
+
+### References:
+- [Chonkie Documentation](https://docs.chonkie.ai/oss/quick-start)
