@@ -82,7 +82,6 @@ chunk-3 -> tokens 8, 9, 10, 11
 
 Will present the understanding based on the image with explanation below for each components in the image
 
-#### Image Explanation:
 ##### No Chunking!
 This explains how the embedding model works, where each token will have an embedding and these token embedding will be transformed based on the context or tokens that co-occurs in the sentence using attention mechanism. Later based on the transformed or encoded embeddings the final polled single embedding will be generated for the whole text.
 ##### Late Interaction - ColBERT!
