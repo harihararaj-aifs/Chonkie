@@ -119,7 +119,6 @@ Where AI agents are used for the chunking, this requires us to provide the LLM a
 9. No framework-style orchestration
 
 ### SemanticChunker:
-- Embedding model is called ONCE for all sentences
 - Cosine similarity matrix is reused
 - Savitzky–Golay filter smooths boundaries in O(n)
 - Only valley detection is O(n)
